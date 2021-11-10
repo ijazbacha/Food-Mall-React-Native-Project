@@ -1,21 +1,31 @@
 import * as React from "react";
-import { View, Text, SafeAreaView, StyleSheet, Platform } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import Home from "./Screens/Home";
 
 export default function App() {
   return (
-    <View style={styles.droidSafeArea}>
-      <SafeAreaView>
-        <Home />
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <SafeAreaView style={styles.droidSafeArea}>
+        <View style={{ backgroundColor: "white", padding: 15 }}>
+          <Home />
+        </View>
       </SafeAreaView>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
   droidSafeArea: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#eee",
     paddingTop: Platform.OS === "android" ? 25 : 0,
   },
 });
