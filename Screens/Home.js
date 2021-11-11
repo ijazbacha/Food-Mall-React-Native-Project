@@ -1,7 +1,8 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import Categories from "../Components/Categories";
 import HeaderBtns from "../Components/HeaderBtns";
+import RestaurantItems from "../Components/RestaurantItems";
 import SearchBar from "../Components/SearchBar";
 
 export default function Home() {
@@ -11,7 +12,17 @@ export default function Home() {
         <HeaderBtns />
         <SearchBar />
       </View>
-      <Categories />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Categories />
+        <RestaurantItems />
+        <RestaurantItems />
+        <RestaurantItems />
+        <RestaurantItems />
+        <RestaurantItems />
+        <RestaurantItems />
+        <RestaurantItems />
+        <RestaurantItems />
+      </ScrollView>
     </View>
   );
 }
