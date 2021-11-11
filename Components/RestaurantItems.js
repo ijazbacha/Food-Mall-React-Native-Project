@@ -4,8 +4,8 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 const RestaurantItems = () => {
   return (
-    <TouchableOpacity activeOpacity={0.7} style={{backgroundColor:"#fff", padding:10, marginVertical:10}}>
-    <View>
+    <TouchableOpacity activeOpacity={0.7} >
+    <View style={{backgroundColor:"#fff", padding:10, marginVertical:5}}>
       <RestaurantImage />
       <RestaurantInfo />
     </View>
@@ -24,7 +24,7 @@ const RestaurantImage = () => (
       style={{ width: "100%", height: 180 }}
       resizeMode="cover"
     />
-    <TouchableOpacity style={{ position: "absolute", top: 10, right: 20 }}>
+    <TouchableOpacity style={{ position: "absolute", top: 20, right: 20 }}>
       <Ionicons name="heart-outline" size={30} style={{ color: "white" }} />
     </TouchableOpacity>
   </>
@@ -55,7 +55,7 @@ const RestaurantInfo = () => (
         justifyContent: "center",
       }}
     >
-      <Text style={{ textAlign: "center", fontWeight:"700" }}>7</Text>
+      <Text style={{ textAlign: "center", fontWeight:"700" }}>3.5</Text>
     </View>
   </View>
 );

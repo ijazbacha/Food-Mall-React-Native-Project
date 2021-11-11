@@ -12,13 +12,11 @@ import Home from "./Screens/Home";
 
 export default function App() {
   return (
-    // <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <SafeAreaView style={styles.droidSafeArea}>
-        <View>
-          <Home />
-        </View>
-      </SafeAreaView>
-    // </TouchableWithoutFeedback>
+    <SafeAreaView style={styles.droidSafeArea}>
+      <View>
+        <Home />
+      </View>
+    </SafeAreaView>
   );
 }
 
