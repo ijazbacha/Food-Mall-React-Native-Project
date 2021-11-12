@@ -2,16 +2,20 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-const RestaurantItems = ({restaurantData, ...props}) => {
+const RestaurantItems = ({ restaurantData, ...props }) => {
   return (
-    <TouchableOpacity activeOpacity={0.7} >
-     { restaurantData.map((restaurant, index) =>(
-    <View key={index} style={{backgroundColor:"#fff", padding:10, marginVertical:5}}>
-      <RestaurantImage image={restaurant.image_url} />
-      <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
+    <View>
+      {restaurantData.map((restaurant, index) => (
+        <TouchableOpacity activeOpacity={0.7} key={index}>
+          <View
+            style={{ backgroundColor: "#fff", padding: 10, marginVertical: 5 }}
+          >
+            <RestaurantImage image={restaurant.image_url} />
+            <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
+          </View>
+        </TouchableOpacity>
+      ))}
     </View>
-))}
-    </TouchableOpacity>
   );
 };
 
@@ -42,9 +46,7 @@ const RestaurantInfo = (props) => (
     }}
   >
     <View>
-      <Text style={{ fontSize: 15, fontWeight: "bold" }}>
-        {props.name}
-      </Text>
+      <Text style={{ fontSize: 15, fontWeight: "bold" }}>{props.name}</Text>
       <Text style={{ color: "gray" }}>35 - 45 . min</Text>
     </View>
     <View
@@ -57,7 +59,9 @@ const RestaurantInfo = (props) => (
         justifyContent: "center",
       }}
     >
-      <Text style={{ textAlign: "center", fontWeight:"700" }}>{props.rating}</Text>
+      <Text style={{ textAlign: "center", fontWeight: "700" }}>
+        {props.rating}
+      </Text>
     </View>
   </View>
 );
