@@ -8,8 +8,12 @@ const SearchBar = ({handleCity}) => {
   const [getSearch, setGetSearch] = useState("")
 
   const handleSubmit = () =>{
-    handleCity(getSearch)
-    setGetSearch("")
+    if( getSearch != ""){
+      handleCity(getSearch)
+      setGetSearch("")
+    }
+    
+    
   }
   return (
     <View
