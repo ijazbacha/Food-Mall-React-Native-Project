@@ -10,11 +10,11 @@ const YELP_API_KEY =
 
 export default function Home() {
   const [restaurantData, setRestaurantData] = useState([]);
-  const [city, setCity] = useState("SanDiego")
+  const [city, setCity] = useState("SanDiego");
+  const [activeTab, setActiveTab] = useState("Delivery");
 
   const getRestaurantFromYelp = async () => {
-    const yelpUrl =
-      `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${city}`;
+    const yelpUrl = `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${city}`;
     const apiOption = {
       headers: {
         authorization: ` Bearer ${YELP_API_KEY} `,
@@ -22,19 +22,25 @@ export default function Home() {
     };
     return await fetch(yelpUrl, apiOption)
       .then((res) => res.json())
-      .then((json) => setRestaurantData(json.businesses));
+      .then((json) =>
+        setRestaurantData(
+          json.businesses.filter((businesses) =>
+            businesses.transactions.includes(activeTab.toLowerCase())
+          )
+        )
+      );
   };
 
   useEffect(() => {
     getRestaurantFromYelp();
-  }, [city]);
+  }, [city, activeTab]);
 
-  console.log("Restaurant Data>>>>>>>", restaurantData);
-  console.log("city Data>>>>>>>", city);
+  // console.log("Restaurant Data>>>>>>>", restaurantData);
+  // console.log("city Data>>>>>>>", city);
   return (
     <View>
       <View style={{ backgroundColor: "white", padding: 15 }}>
-        <HeaderBtns />
+        <HeaderBtns activeTab={activeTab} setActiveTab={setActiveTab} />
         <SearchBar handleCity={setCity} />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>

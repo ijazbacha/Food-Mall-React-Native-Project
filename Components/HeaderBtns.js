@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
-export default function HeaderBtns() {
-  const [activeTab, setActiveTab] = useState('Delivery')
+export default function HeaderBtns({activeTab, setActiveTab}) {
+  // const [activeTab, setActiveTab] = useState('Delivery')
   return (
     <View style={{ flexDirection: "row", justifyContent: "center"  }}>
       <CustomBtn text="Delivery" activeTab={activeTab} setActiveTab={setActiveTab}/>
@@ -11,7 +11,7 @@ export default function HeaderBtns() {
   );
 }
 
-const CustomBtn = ({ text, bgColor, tColor, activeTab, setActiveTab, ...props }) => {
+const CustomBtn = ({ text, activeTab, setActiveTab, ...props }) => {
   
   return (
     <TouchableOpacity onPress={() => setActiveTab(text)}
