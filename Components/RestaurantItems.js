@@ -2,24 +2,26 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-const RestaurantItems = () => {
+const RestaurantItems = ({restaurantData, ...props}) => {
   return (
     <TouchableOpacity activeOpacity={0.7} >
-    <View style={{backgroundColor:"#fff", padding:10, marginVertical:5}}>
-      <RestaurantImage />
-      <RestaurantInfo />
+     { restaurantData.map((restaurant, index) =>(
+    <View key={index} style={{backgroundColor:"#fff", padding:10, marginVertical:5}}>
+      <RestaurantImage image={restaurant.image_url} />
+      <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
     </View>
+))}
     </TouchableOpacity>
   );
 };
 
 export default RestaurantItems;
 
-const RestaurantImage = () => (
+const RestaurantImage = (props) => (
   <>
     <Image
       source={{
-        uri: "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
+        uri: props.image,
       }}
       style={{ width: "100%", height: 180 }}
       resizeMode="cover"
@@ -30,7 +32,7 @@ const RestaurantImage = () => (
   </>
 );
 
-const RestaurantInfo = () => (
+const RestaurantInfo = (props) => (
   <View
     style={{
       flexDirection: "row",
@@ -41,7 +43,7 @@ const RestaurantInfo = () => (
   >
     <View>
       <Text style={{ fontSize: 15, fontWeight: "bold" }}>
-        Food Deals In Islamabad Today
+        {props.name}
       </Text>
       <Text style={{ color: "gray" }}>35 - 45 . min</Text>
     </View>
@@ -55,7 +57,7 @@ const RestaurantInfo = () => (
         justifyContent: "center",
       }}
     >
-      <Text style={{ textAlign: "center", fontWeight:"700" }}>3.5</Text>
+      <Text style={{ textAlign: "center", fontWeight:"700" }}>{props.rating}</Text>
     </View>
   </View>
 );
