@@ -65,11 +65,7 @@ const SearchBar = ({handleCity}) => {
     //       flexDirection: "row",
     //       marginTop: 10,
     //       backgroundColor: "#eee",
-    //       width: "100%",
-    //       height: 50,
-    //       borderRadius: 50,
     //       alignItems: "center",
-    //       justifyContent: "space-between",
     //     }}
     //     >
     //     <GooglePlacesAutocomplete
