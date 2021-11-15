@@ -25,7 +25,7 @@ const SearchBar = ({handleCity}) => {
         height: 50,
         borderRadius: 50,
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
       }}
     >
       <View style={{ flexDirection: "row", alignItems:"center" }}>
