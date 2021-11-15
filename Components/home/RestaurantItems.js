@@ -2,19 +2,43 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-const RestaurantItems = ({ restaurantData, ...props }) => {
+const RestaurantItems = ({ restaurantData, navigation, ...props }) => {
+  // console.log("Navigation>>>>>", navigation)
   return (
     <View>
-      {restaurantData.map((restaurant, index) => (
-        <TouchableOpacity activeOpacity={0.7} key={index}>
-          <View
-            style={{ backgroundColor: "#fff", padding: 10, marginVertical: 5 }}
-          >
-            <RestaurantImage image={restaurant.image_url} />
-            <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
-          </View>
-        </TouchableOpacity>
-      ))}
+      {restaurantData.map(
+        (restaurant, index) => (
+          console.log("restaurant.categories", restaurant.categories[0].title),
+          (
+            <TouchableOpacity
+              activeOpacity={0.7}
+              key={index}
+              onPress={() =>
+                navigation.navigate("RestaurantDetails", {
+                  name: restaurant.name,
+                  image: restaurant.image_url,
+                  rating: restaurant.rating,
+                  categories: restaurant.categories,
+                })
+              }
+            >
+              <View
+                style={{
+                  backgroundColor: "#fff",
+                  padding: 10,
+                  marginVertical: 5,
+                }}
+              >
+                <RestaurantImage image={restaurant.image_url} />
+                <RestaurantInfo
+                  name={restaurant.name}
+                  rating={restaurant.rating}
+                />
+              </View>
+            </TouchableOpacity>
+          )
+        )
+      )}
     </View>
   );
 };

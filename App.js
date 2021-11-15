@@ -8,6 +8,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
+import RootNavigation from "./Navigation/Navigation";
 import Home from "./Screens/Home";
 import RestaurantDetails from "./Screens/RestaurantDetails";
 
@@ -15,7 +16,9 @@ export default function App() {
   return (
     <SafeAreaView style={styles.droidSafeArea}>
       {/* <Home /> */}
-      <RestaurantDetails />
+      {/* <RestaurantDetails /> */}
+
+      <RootNavigation />
     </SafeAreaView>
   );
 }

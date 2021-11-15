@@ -10,7 +10,7 @@ import SearchBar from "../Components/home/SearchBar";
 const YELP_API_KEY =
   "l0V3W2b7CiztIyFcpXjxD3NDcOvlVPcGHVUCireTcDsRp7KsJXufCycCJJdEIg3S7rcQ3YvnXPCNtbxuA-WiEottJ4wJ9OzWfLs2TDyZ4Dlbyk4rMhHgOxyDnwCOYXYx";
 
-export default function Home() {
+export default function Home({navigation}) {
   const [restaurantData, setRestaurantData] = useState([]);
   const [city, setCity] = useState("SanDiego");
   const [activeTab, setActiveTab] = useState("Delivery");
@@ -37,7 +37,7 @@ export default function Home() {
     getRestaurantFromYelp();
   }, [city, activeTab]);
 
-  // console.log("Restaurant Data>>>>>>>", restaurantData);
+  console.log("Restaurant Data>>>>>>>", restaurantData);
   // console.log("city Data>>>>>>>", city);
   return (
     <View style={{ flex:1}}>
@@ -48,7 +48,7 @@ export default function Home() {
       <Divider width={1} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Categories />
-        <RestaurantItems restaurantData={restaurantData} />
+        <RestaurantItems restaurantData={restaurantData} navigation={navigation} />
       </ScrollView>
       <Divider width={1} />
       <BottomTab />
