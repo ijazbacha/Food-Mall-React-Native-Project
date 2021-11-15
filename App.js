@@ -13,9 +13,7 @@ import Home from "./Screens/Home";
 export default function App() {
   return (
     <SafeAreaView style={styles.droidSafeArea}>
-      <View>
-        <Home />
-      </View>
+      <Home />
     </SafeAreaView>
   );
 }

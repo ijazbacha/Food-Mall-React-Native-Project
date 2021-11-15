@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { SafeAreaView, ScrollView, Text, View, StyleSheet } from "react-native";
+import { Divider } from "react-native-elements";
+import BottomTab from "../Components/BottomTab";
 import Categories from "../Components/Categories";
 import HeaderBtns from "../Components/HeaderBtns";
 import RestaurantItems from "../Components/RestaurantItems";
@@ -38,15 +40,26 @@ export default function Home() {
   // console.log("Restaurant Data>>>>>>>", restaurantData);
   // console.log("city Data>>>>>>>", city);
   return (
-    <View>
+    <View style={{ flex:1}}>
       <View style={{ backgroundColor: "white", padding: 15 }}>
         <HeaderBtns activeTab={activeTab} setActiveTab={setActiveTab} />
         <SearchBar handleCity={setCity} />
       </View>
+      <Divider width={1} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Categories />
         <RestaurantItems restaurantData={restaurantData} />
       </ScrollView>
+      <Divider width={1} />
+      <BottomTab />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  droidSafeArea: {
+    flex: 1,
+    backgroundColor: "#eee",
+    paddingTop: Platform.OS === "android" ? 25 : 0,
+  },
+});

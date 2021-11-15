@@ -43,7 +43,7 @@ const Categories = () => {
     >
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {items.map((item, index) => (
-          <View key={index} style={{ marginRight: 25, paddingLeft: 8 }}>
+          <View key={index} style={{ marginRight: 17, paddingLeft: 10 }}>
             <Image source={item.image} style={{ width: 50, height: 40 }} />
             <Text style={{ fontWeight: "700", fontSize: 13 }}>{item.text}</Text>
           </View>
