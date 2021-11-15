@@ -8,11 +8,16 @@ const title = "YEELE Luxury Restaurant Wooden Chairs";
 
 const description = "Thai . Comfort Food . :card . 4 :star(2912+)";
 
-const About = () => {
+const About = ({route}) => {
+  const {name, image, price, rating, reviews, categories} = route.params
+
+  const formatedCategories = categories.map((cat) => cat.title).join(" . ")
+
+  const description = `${formatedCategories} ${price ? " . " + price : " "} , Rating: ${rating} , Reviews: (${reviews}+)`
   return (
     <View style={{ backgroundColor: "#fff" }}>
       <RestaurantImage image={image} />
-      <RestaurantTitle title={title} />
+      <RestaurantTitle name={name} />
       <RestaurantDescription description={description} />
     </View>
   );
@@ -24,7 +29,7 @@ const RestaurantImage = ({ image }) => (
   <Image source={{ uri: image }} style={{ width: "100%", height: 180 }} />
 );
 
-const RestaurantTitle = ({ title }) => (
+const RestaurantTitle = ({ name }) => (
   <Text
     style={{
       fontSize: 25,
@@ -33,7 +38,7 @@ const RestaurantTitle = ({ title }) => (
       paddingHorizontal: 10,
     }}
   >
-    {title}
+    {name}
   </Text>
 );
 

@@ -17,7 +17,9 @@ const RestaurantItems = ({ restaurantData, navigation, ...props }) => {
                 navigation.navigate("RestaurantDetails", {
                   name: restaurant.name,
                   image: restaurant.image_url,
+                  price: restaurant.price,
                   rating: restaurant.rating,
+                  reviews: restaurant.review_count,
                   categories: restaurant.categories,
                 })
               }
