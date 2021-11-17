@@ -58,6 +58,10 @@ const MenuItems = ({ route }) => {
   // console.log(name);
   const dispatch = useDispatch();
 
+  const cartItems = useSelector((state) => state.cart.selectedItem.items)
+
+  const isFoodInCart = (cartItems, food) => Boolean(cartItems.find((item) => item.title == food.title))
+
   const handleCheckBox = (food, restaurantName, checkboxState) => {
     return (
       // console.log(" restaurantName", restaurantName),
@@ -87,6 +91,7 @@ const MenuItems = ({ route }) => {
               fillColor="green"
               unfillColor="#FFFFFF"
               iconStyle={{ borderColor: "lightgray", borderRadius: 8 }}
+              isChecked={isFoodInCart(cartItems, food)}
               onPress={(isChecked) => handleCheckBox(food, name, isChecked)}
             />
             <FoodInfo food={food} />
