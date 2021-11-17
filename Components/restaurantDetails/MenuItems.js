@@ -15,29 +15,14 @@ const foods = [
   },
 
   {
-    title: "YEELE Luxury Restaurant Wooden Chairs",
+    title: "looked up one of the more obscure",
     description: "simply dummy text of the printing and  industry",
     image:
       "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
     price: "$113.5",
   },
   {
-    title: "YEELE Luxury Restaurant Wooden Chairs",
-    description: "simply dummy text of the printing and  industry",
-    image:
-      "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
-    price: "$113.5",
-  },
-
-  {
-    title: "YEELE Luxury Restaurant Wooden Chairs",
-    description: "simply dummy text of the printing and  industry",
-    image:
-      "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
-    price: "$113.5",
-  },
-  {
-    title: "YEELE Luxury Restaurant Wooden Chairs",
+    title: "making it over 2000 years old",
     description: "simply dummy text of the printing and  industry",
     image:
       "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
@@ -45,7 +30,22 @@ const foods = [
   },
 
   {
-    title: "YEELE Luxury Restaurant Wooden Chairs",
+    title: "It has roots in a piece of classical Latin",
+    description: "simply dummy text of the printing and  industry",
+    image:
+      "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
+    price: "$113.5",
+  },
+  {
+    title: "Lorem Ipsum is not simply random text",
+    description: "simply dummy text of the printing and  industry",
+    image:
+      "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
+    price: "$113.5",
+  },
+
+  {
+    title: "Contrary to popular belief",
     description: "simply dummy text of the printing and  industry",
     image:
       "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
@@ -57,13 +57,17 @@ const MenuItems = ({ route }) => {
   const { name } = route.params;
   // console.log(name);
   const dispatch = useDispatch();
-  const [checkboxState, setCheckboxState] = useState(false);
-  
-  const handleCheckBox = (food, restaurantName) => {
+
+  const handleCheckBox = (food, restaurantName, checkboxState) => {
     return (
       // console.log(" restaurantName", restaurantName),
-      setCheckboxState(!checkboxState),
-      dispatch(addToCart({ ...food, restaurantName:restaurantName }))
+      dispatch(
+        addToCart({
+          ...food,
+          restaurantName: restaurantName,
+          checkboxState: checkboxState,
+        })
+      )
     );
   };
   return (
@@ -82,14 +86,13 @@ const MenuItems = ({ route }) => {
             <BouncyCheckbox
               fillColor="green"
               unfillColor="#FFFFFF"
-              isChecked={checkboxState}
               iconStyle={{ borderColor: "lightgray", borderRadius: 8 }}
-              onPress={() => handleCheckBox(food, name)}
+              onPress={(isChecked) => handleCheckBox(food, name, isChecked)}
             />
             <FoodInfo food={food} />
             <FoodImage food={food} />
           </View>
-          <Divider width={0.8} style={{marginHorizontal:30}} />
+          <Divider width={0.8} style={{ marginHorizontal: 30 }} />
         </View>
       ))}
     </ScrollView>
