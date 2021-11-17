@@ -6,12 +6,13 @@ import CartBtn from "../Components/restaurantDetails/CartBtn";
 import MenuItems from "../Components/restaurantDetails/MenuItems";
 
 const RestaurantDetails = ({route}) => {
-  console.log("routes>>>", route.params)
+  // console.log("routes>>>", route.params)
+  
   return (
     <View style={{ flex: 1 }}>
       <About route={route} />
       <Divider width={1.7} style={{ marginBottom: 4 }} />
-      <MenuItems />
+      <MenuItems route={route} />
       <CartBtn />
     </View>
   );

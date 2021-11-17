@@ -8,7 +8,7 @@ const RestaurantItems = ({ restaurantData, navigation, ...props }) => {
     <View>
       {restaurantData.map(
         (restaurant, index) => (
-          console.log("restaurant.categories", restaurant.categories[0].title),
+          // console.log("restaurant.categories", restaurant.categories[0].title),
           (
             <TouchableOpacity
               activeOpacity={0.7}

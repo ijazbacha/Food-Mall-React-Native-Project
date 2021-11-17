@@ -13,6 +13,7 @@ export const CartSlice = createSlice({
         items: [state.selectedItem.items, action.payload],
         restaurantName: action.payload.restaurantName,
       };
+      console.log("state>>>", state)
     }
   },
 })

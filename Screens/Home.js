@@ -37,7 +37,7 @@ export default function Home({navigation}) {
     getRestaurantFromYelp();
   }, [city, activeTab]);
 
-  console.log("Restaurant Data>>>>>>>", restaurantData);
+  // console.log("Restaurant Data>>>>>>>", restaurantData);
   // console.log("city Data>>>>>>>", city);
   return (
     <View style={{ flex:1}}>
