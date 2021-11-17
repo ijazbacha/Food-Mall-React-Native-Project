@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { useSelector } from "react-redux";
+import firebase from "../../Firebase/Firebase";
 import OrderItems from "./OrderItems";
 
 const CartBtn = () => {
@@ -18,6 +19,16 @@ const CartBtn = () => {
     currency: "USD",
   });
 
+  const addOrderToFirebase = () => {
+    const db = firebase.firestore();
+    db.collection("orders").add({
+      items: items,
+      restaurantName: restaurantName,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+    setModalVisible(false)
+  };
+
   const viewModalContent = () => {
     return (
       <View
@@ -27,65 +38,65 @@ const CartBtn = () => {
           backgroundColor: "rgba(0,0,0,0.5)",
         }}
       >
-        
-        <View
-          style={{ height: 500, backgroundColor: "#fff" }}
-        >
-          <ScrollView showsVerticalScrollIndicator={false}  >
-            <View style={{alignItems:"center"}} >
-          <Text style={{ fontWeight: "700", fontSize: 16, marginTop: 10 }}>
-            {restaurantName}
-          </Text>
+        <View style={{ height: 500, backgroundColor: "#fff" }}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={{ alignItems: "center" }}>
+              <Text style={{ fontWeight: "700", fontSize: 16, marginTop: 10 }}>
+                {restaurantName}
+              </Text>
 
-          {items.map((item, index) => (
-            <OrderItems item={item} key={index} />
-          ))}
+              {items.map((item, index) => (
+                <OrderItems item={item} key={index} />
+              ))}
 
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              paddingTop: 10,
-              marginBottom: 15,
-            }}
-          >
-            <Text style={{ width: 300, fontWeight: "700" }}>SubTotal</Text>
-            <Text>${fmtTotal}</Text>
-          </View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  paddingTop: 10,
+                  marginBottom: 15,
+                }}
+              >
+                <Text style={{ width: 300, fontWeight: "700" }}>SubTotal</Text>
+                <Text>${fmtTotal}</Text>
+              </View>
 
-          <TouchableOpacity
-            onPress={() => setModalVisible(false)}
-            style={{
-              backgroundColor: "black",
-              padding: 13,
-              borderRadius: 30,
-              width: 250,
-              alignItems: "center",
-              marginVertical: 10,
-              alignItems: "flex-start",
-              flexDirection: "row",
-              justifyContent: "space-around",
-            }}
-          >
-            <Text
-              style={{
-                color: "white",
-                fontSize: 16,
-                fontWeight: "500",
-                marginLeft: 50,
-              }}
-            >
-              Checkout
-            </Text>
-            <Text style={{ color: "white", fontSize: 16 }}>${fmtTotal}</Text>
-          </TouchableOpacity>
-          </View>
-        </ScrollView>
+              <TouchableOpacity
+                onPress={() => {addOrderToFirebase()}}
+                style={{
+                  backgroundColor: "black",
+                  padding: 13,
+                  borderRadius: 30,
+                  width: 250,
+                  alignItems: "center",
+                  marginVertical: 10,
+                  alignItems: "flex-start",
+                  flexDirection: "row",
+                  justifyContent: "space-around",
+                }}
+              >
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 16,
+                    fontWeight: "500",
+                    marginLeft: 50,
+                  }}
+                >
+                  Checkout
+                </Text>
+                <Text style={{ color: "white", fontSize: 16 }}>
+                  ${fmtTotal}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
         </View>
-        
       </View>
     );
   };
+
+  
 
   return (
     <View>
