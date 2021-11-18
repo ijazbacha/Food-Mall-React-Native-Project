@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import firebase from "../../Firebase/Firebase";
 import OrderItems from "./OrderItems";
 
-const CartBtn = () => {
+const CartBtn = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const { items, restaurantName } = useSelector(
     (state) => state.cart.selectedItem
@@ -27,6 +27,7 @@ const CartBtn = () => {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setModalVisible(false)
+    navigation.navigate("OrderCompleted")
   };
 
   const viewModalContent = () => {

@@ -5,62 +5,15 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../Slices/CartSlice";
 
-const foods = [
-  {
-    title: "YEELE Luxury Restaurant Wooden Chairs",
-    description: "simply dummy text of the printing and  industry",
-    image:
-      "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
-    price: "$113.5",
-  },
-
-  {
-    title: "looked up one of the more obscure",
-    description: "simply dummy text of the printing and  industry",
-    image:
-      "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
-    price: "$113.5",
-  },
-  {
-    title: "making it over 2000 years old",
-    description: "simply dummy text of the printing and  industry",
-    image:
-      "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
-    price: "$113.5",
-  },
-
-  {
-    title: "It has roots in a piece of classical Latin",
-    description: "simply dummy text of the printing and  industry",
-    image:
-      "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
-    price: "$113.5",
-  },
-  {
-    title: "Lorem Ipsum is not simply random text",
-    description: "simply dummy text of the printing and  industry",
-    image:
-      "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
-    price: "$113.5",
-  },
-
-  {
-    title: "Contrary to popular belief",
-    description: "simply dummy text of the printing and  industry",
-    image:
-      "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
-    price: "$113.5",
-  },
-];
-
-const MenuItems = ({ route }) => {
-  const { name } = route.params;
+const MenuItems = ({ restaurantName, foods, hideCheckBox, marginleft }) => {
+  // const { restaurantName } = route.params;
   // console.log(name);
   const dispatch = useDispatch();
 
-  const cartItems = useSelector((state) => state.cart.selectedItem.items)
+  const cartItems = useSelector((state) => state.cart.selectedItem.items);
 
-  const isFoodInCart = (cartItems, food) => Boolean(cartItems.find((item) => item.title == food.title))
+  const isFoodInCart = (cartItems, food) =>
+    Boolean(cartItems.find((item) => item.title == food.title));
 
   const handleCheckBox = (food, restaurantName, checkboxState) => {
     return (
@@ -87,13 +40,19 @@ const MenuItems = ({ route }) => {
               paddingHorizontal: 8,
             }}
           >
-            <BouncyCheckbox
-              fillColor="green"
-              unfillColor="#FFFFFF"
-              iconStyle={{ borderColor: "lightgray", borderRadius: 8 }}
-              isChecked={isFoodInCart(cartItems, food)}
-              onPress={(isChecked) => handleCheckBox(food, name, isChecked)}
-            />
+            {hideCheckBox ? (
+              <></>
+            ) : (
+              <BouncyCheckbox
+                fillColor="green"
+                unfillColor="#FFFFFF"
+                iconStyle={{ borderColor: "lightgray", borderRadius: 8 }}
+                isChecked={isFoodInCart(cartItems, food)}
+                onPress={(isChecked) =>
+                  handleCheckBox(food, restaurantName, isChecked)
+                }
+              />
+            )}
             <FoodInfo food={food} />
             <FoodImage food={food} />
           </View>
