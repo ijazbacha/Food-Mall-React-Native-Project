@@ -62,7 +62,7 @@ const CartBtn = () => {
               </View>
 
               <TouchableOpacity
-                onPress={() => {addOrderToFirebase()}}
+                onPress={() => addOrderToFirebase()}
                 style={{
                   backgroundColor: "black",
                   padding: 13,

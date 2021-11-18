@@ -1,4 +1,4 @@
-import firebase, { initializeApp  } from "firebase/app";
+import firebase from "firebase";
 
 
 const firebaseConfig = {
@@ -12,6 +12,7 @@ const firebaseConfig = {
 
 console.log('22 fire',firebase)
 
-firebase===undefined ? initializeApp(firebaseConfig) : firebase.app();
+// !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
+firebase.initializeApp(firebaseConfig)
 
 export default firebase;
