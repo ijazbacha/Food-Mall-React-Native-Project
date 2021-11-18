@@ -19,15 +19,16 @@ const OrderCompleted = () => {
         currency: "USD",
       });
       
-    const lastorder = [
-        {
-          title: "YEELE Luxury Restaurant Wooden Chairs",
-          description: "simply dummy text of the printing and  industry",
-          image:
-            "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
-          price: "$113.5",
-        },
-    ]    
+    // const lastorder = [
+    //     {
+    //       title: "YEELE Luxury Restaurant Wooden Chairs",
+    //       description: "simply dummy text of the printing and  industry",
+    //       image:
+    //         "https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?size=626&ext=jpg",
+    //       price: "$113.5",
+    //     },
+    // ] 
+       
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
       {/* completed animation  */}

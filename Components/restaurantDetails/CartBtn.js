@@ -4,8 +4,9 @@ import { useSelector } from "react-redux";
 import firebase from "../../Firebase/Firebase";
 import OrderItems from "./OrderItems";
 
-const CartBtn = ({navigation}) => {
+const CartBtn = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { items, restaurantName } = useSelector(
     (state) => state.cart.selectedItem
   );
@@ -21,13 +22,20 @@ const CartBtn = ({navigation}) => {
 
   const addOrderToFirebase = () => {
     const db = firebase.firestore();
-    db.collection("orders").add({
-      items: items,
-      restaurantName: restaurantName,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-    });
-    setModalVisible(false)
-    navigation.navigate("OrderCompleted")
+    db.collection("orders")
+      .add({
+        items: items,
+        restaurantName: restaurantName,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .then(() => {
+        setTimeout(() => {
+          setLoading(true);
+          setModalVisible(false);
+          navigation.navigate("OrderCompleted");
+        }, 2500);
+        // setLoading(false);
+      });
   };
 
   const viewModalContent = () => {
@@ -97,8 +105,6 @@ const CartBtn = ({navigation}) => {
     );
   };
 
-  
-
   return (
     <View>
       <Modal
@@ -136,6 +142,27 @@ const CartBtn = ({navigation}) => {
           <View></View>
         )}
       </View>
+      {/* {loading ? (
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            position: "absolute",
+            backgroundColor: "black",
+            opacity: 0.6,
+          }}
+        >
+          <LottieView
+            source={require("../../assets/animations/scanner.json")}
+            autoPlay
+            speed={3}
+            style={{ height: 200 }}
+          />
+        </View>
+      ) : (
+        <></>
+      )} */}
     </View>
   );
 };
