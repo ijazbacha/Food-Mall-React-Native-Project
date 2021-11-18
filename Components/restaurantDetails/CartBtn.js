@@ -3,6 +3,7 @@ import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { useSelector } from "react-redux";
 import firebase from "../../Firebase/Firebase";
 import OrderItems from "./OrderItems";
+import LottieView from "lottie-react-native"
 
 const CartBtn = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -21,6 +22,9 @@ const CartBtn = ({ navigation }) => {
   });
 
   const addOrderToFirebase = () => {
+    setModalVisible(false);
+    setLoading(true);
+    
     const db = firebase.firestore();
     db.collection("orders")
       .add({
@@ -30,11 +34,9 @@ const CartBtn = ({ navigation }) => {
       })
       .then(() => {
         setTimeout(() => {
-          setLoading(true);
-          setModalVisible(false);
+          setLoading(false);
           navigation.navigate("OrderCompleted");
         }, 2500);
-        // setLoading(false);
       });
   };
 
@@ -106,7 +108,7 @@ const CartBtn = ({ navigation }) => {
   };
 
   return (
-    <View>
+    <View style={{flex:1}}>
       <Modal
         animationType="slide"
         visible={modalVisible}
@@ -126,7 +128,7 @@ const CartBtn = ({ navigation }) => {
                 borderRadius: 50,
                 marginBottom: 10,
                 width: 300,
-                alignItems: "flex-start",
+                // alignItems: "flex-end",
                 flexDirection: "row",
                 justifyContent: "space-around",
               }}
@@ -142,15 +144,20 @@ const CartBtn = ({ navigation }) => {
           <View></View>
         )}
       </View>
-      {/* {loading ? (
+      <View style={{alignItems: "center"}}>
+      {loading ? (
+        <View style={{position: "absolute", bottom:255 }}>
         <View
           style={{
-            flex: 1,
+            // flexDirection:"row",
             alignItems: "center",
             justifyContent: "center",
             position: "absolute",
             backgroundColor: "black",
             opacity: 0.6,
+            height:"100%",
+            width:"100%",
+
           }}
         >
           <LottieView
@@ -160,9 +167,11 @@ const CartBtn = ({ navigation }) => {
             style={{ height: 200 }}
           />
         </View>
+        </View>
       ) : (
         <></>
-      )} */}
+      )}
+      </View>
     </View>
   );
 };
