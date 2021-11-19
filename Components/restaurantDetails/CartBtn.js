@@ -3,7 +3,7 @@ import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { useSelector } from "react-redux";
 import firebase from "../../Firebase/Firebase";
 import OrderItems from "./OrderItems";
-import LottieView from "lottie-react-native"
+import LottieView from "lottie-react-native";
 
 const CartBtn = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -24,7 +24,7 @@ const CartBtn = ({ navigation }) => {
   const addOrderToFirebase = () => {
     setModalVisible(false);
     setLoading(true);
-    
+
     const db = firebase.firestore();
     db.collection("orders")
       .add({
@@ -36,7 +36,7 @@ const CartBtn = ({ navigation }) => {
         setTimeout(() => {
           setLoading(false);
           navigation.navigate("OrderCompleted");
-        }, 2500);
+        }, 1000);
       });
   };
 
@@ -108,7 +108,7 @@ const CartBtn = ({ navigation }) => {
   };
 
   return (
-    <View style={{flex:1}}>
+    <View>
       <Modal
         animationType="slide"
         visible={modalVisible}
@@ -144,31 +144,29 @@ const CartBtn = ({ navigation }) => {
           <View></View>
         )}
       </View>
-      <View style={{alignItems: "center"}}>
-      {loading ? (
-        <View style={{position: "absolute", bottom:255 }}>
-        <View
-          style={{
-            // flexDirection:"row",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "absolute",
-            backgroundColor: "black",
-            opacity: 0.6,
-            height:"100%",
-            width:"100%",
-
-          }}
-        >
-          <LottieView
-            source={require("../../assets/animations/scanner.json")}
-            autoPlay
-            speed={3}
-            style={{ height: 200 }}
-          />
+      <View style={{ alignItems: "center" }}>
+        {loading ? (
+        <View style={{ position: "absolute", bottom: 355 }}>
+          <View
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              position: "absolute",
+              backgroundColor: "black",
+              opacity: 0.6,
+              height: "100%",
+              width: "100%",
+            }}
+          >
+            <LottieView
+              source={require("../../assets/animations/scanner.json")}
+              autoPlay
+              speed={3}
+              style={{ height: 200 }}
+            />
+          </View>
         </View>
-        </View>
-      ) : (
+        ) : (
         <></>
       )}
       </View>
