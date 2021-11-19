@@ -29,10 +29,17 @@ export const CartSlice = createSlice({
 
       console.log("initialState>>>", state);
     },
+
+    clearCart: (state, action) => {
+      state.selectedItem = {
+        items: [],
+        restaurantName: "",
+      };
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addToCart } = CartSlice.actions;
+export const { addToCart, clearCart } = CartSlice.actions;
 
 export default CartSlice.reducer;
